@@ -298,6 +298,35 @@ def slide_conteudo(fundo, cfg, item, num, total):
     return img
 
 
+def post_de_venda(cfg):
+    """Alterna: 1 a cada `venda_a_cada` posts chama pro produto; os outros só pedem salvar e seguir."""
+    a_cada = cfg.get("venda_a_cada", 1)
+    arq = BASE / "conteudo/contador_posts.json"
+    n = json.loads(arq.read_text()) if arq.exists() else 0
+    arq.write_text(json.dumps(n + 1))
+    return n % a_cada == a_cada - 1
+
+
+def slide_seguir(fundo, cfg, total):
+    w, h = fundo.size
+    img = escurecer(fundo, 0.7)
+    d = ImageDraw.Draw(img)
+    destaque = hex_rgb(cfg["marca"]["cor_destaque"])
+    branco = hex_rgb(cfg["marca"]["cor_texto"])
+    f1 = ImageFont.truetype(FONTE_REG, 46)
+    escrever(d, ["Isso te ajudou?"], f1, 0, 330, branco, centro=True, largura=w)
+    fn, ln = caber_texto(d, "SALVA E SEGUE PRA MAIS DICAS", FONTE_BOLD, w - 160, 96, 60, 3)
+    y = escrever(d, ln, fn, 0, 430, destaque, centro=True, largura=w)
+    fb = ImageFont.truetype(FONTE_BOLD, 54)
+    txt = cfg["marca"]["arroba"]
+    bw = d.textlength(txt, font=fb) + 120
+    bx, by = (w - bw) / 2, y + 90
+    d.rounded_rectangle([bx, by, bx + bw, by + 120], radius=60, fill=destaque)
+    d.text((bx + 60, by + 30), txt, font=fb, fill=(20, 20, 20))
+    rodape(d, cfg, w, h, total, total, seta=False)
+    return img
+
+
 def slide_cta(fundo, cfg, eb, total):
     w, h = fundo.size
     img = escurecer(fundo, 0.7)
@@ -340,18 +369,20 @@ def gerar_carrossel(cfg, pasta_saida=None):
     pasta.mkdir(parents=True, exist_ok=True)
     slides = [slide_hook(fundos[0], cfg, roteiro["hook"], total)]
     slides += [slide_conteudo(fundos[i + 1], cfg, it, i + 2, total) for i, it in enumerate(itens)]
-    slides.append(slide_cta(fundos[-1], cfg, prod, total))
+    venda = post_de_venda(cfg)
+    slides.append(slide_cta(fundos[-1], cfg, prod, total) if venda else slide_seguir(fundos[-1], cfg, total))
     arquivos = []
     for i, s in enumerate(slides, 1):
         p = pasta / f"slide_{i:02d}.jpg"
         s.save(p, quality=92)
         arquivos.append(p.name)
 
+    chamada = (f"📘 {prod['nome']}: {prod['chamada_link'].lower()}" if venda
+               else f"Segue {cfg['marca']['arroba']} pra receber dicas todo dia 📲")
     legenda = (f"{roteiro['hook']}\n\n{roteiro.get('legenda', '')}\n\n"
-               f"📘 {prod['nome']}: {prod['chamada_link'].lower()}\n\n"
-               f"{roteiro.get('hashtags', '')}").strip()
+               f"{chamada}\n\n{roteiro.get('hashtags', '')}").strip()
     (pasta / "post.json").write_text(json.dumps(
-        {"hook": roteiro["hook"], "produto": prod["nome"], "link": prod["link"], "legenda": legenda, "slides": arquivos, "publicado": {}},
+        {"hook": roteiro["hook"], "venda": venda, "produto": prod["nome"], "link": prod["link"], "legenda": legenda, "slides": arquivos, "publicado": {}},
         ensure_ascii=False, indent=2), encoding="utf-8")
     print("Carrossel gerado em", pasta)
     return pasta

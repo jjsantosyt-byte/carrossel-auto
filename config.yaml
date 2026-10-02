@@ -24,6 +24,9 @@ ebook:
   chamada_topo: "Quer aprender do zero?"  # frase acima do nome no último slide
   chamada_link: "Link na bio"              # texto do botão do último slide
 
+# 1 a cada N carrosséis termina chamando pro curso; os outros terminam com "salva e segue".
+venda_a_cada: 3
+
 marca:
   arroba: "@vendanoshop"
   cor_destaque: "#FE2C55"                  # rosa do TikTok

@@ -1,0 +1,35 @@
+IDEIAS PARA MAIS CONVERSÃO NO @vendanoshop (e não parecer conteúdo de robô)
+Atualizado em 02/10/2026
+
+== O QUE O ROBÔ JÁ FAZ SOZINHO ==
+- 3 carrosséis por dia (08:00, 12:30, 19:00), gerados às 06:00.
+- 40 roteiros diferentes sobre TikTok Shop (repete só depois de ~2 semanas).
+- Alterna: 2 posts de dica (chamada leve: "salva e segue") e 1 post de venda (chamada forte pro curso).
+- Fotos de fundo automáticas do Pixabay.
+
+== O QUE SÓ VOCÊ PODE FAZER (maior impacto primeiro) ==
+1. PROVA REAL: poste de vez em quando algo seu: print de comissão da Kiwify,
+   bastidor, vídeo testando um produto. Conta 100% automática sem rosto converte pouco.
+2. STORIES TODO DIA: enquete ("já vende no TikTok Shop?"), caixinha de perguntas,
+   link do curso. Story vende mais que feed pra quem já te segue.
+3. RESPONDER COMENTÁRIOS na primeira hora depois de cada post. O algoritmo entrega mais.
+4. FIXAR 3 POSTS no topo do perfil: quem é você / uma prova / o link do curso.
+5. FOTOS SUAS: suba ~20 fotos suas ou prints reais (TikTok Shop, produtos, Kiwify)
+   na pasta fundos/ do GitHub e peça pro Claude trocar para usar só elas.
+6. "COMENTA EU QUE TE MANDO O LINK": puxa a pessoa pro direct, onde a venda acontece.
+   Automatize com o ManyChat (plano grátis). Quando configurar, peça pro Claude
+   colocar essa frase nos posts de venda.
+7. LINK NA BIO: https://jjsantosyt-byte.github.io/carrossel-auto/links/
+
+== PRÓXIMOS PASSOS TÉCNICOS (peça pro Claude) ==
+- Roteiros novos todo dia com IA (precisa de chave da Anthropic, custa centavos).
+- Configurar o TikTok (combina muito com esse tema).
+- Testar mais de um curso de afiliado e ver qual vende mais.
+
+== DATAS IMPORTANTES ==
+- ~01/12/2026: o token do Instagram vence. Gere um novo no painel da Meta
+  e troque o segredo IG_ACCESS_TOKEN no GitHub.
+
+== EVITE ==
+- Prometer valores ("ganhe R$ 5 mil por mês"): Instagram e Kiwify punem.
+- Repetir o mesmo post. Postar e sumir dos comentários.
