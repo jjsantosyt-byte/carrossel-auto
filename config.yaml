@@ -15,7 +15,7 @@ produtos:
     nicho: "ganhar dinheiro como afiliado do TikTok Shop"
     preco: ""
     link: "https://pay.kiwify.com.br/5HL9YNC?afid=sNgcxNct"
-    busca_fundo: ["smartphone", "online shopping", "shopping bags", "package delivery", "phone filming", "ecommerce"]  # temas das fotos (Pexels), um sorteado por carrossel
+    busca_fundo: ["smartphone", "online shopping", "shopping bags", "package delivery", "phone filming", "ecommerce"]  # temas das fotos de fundo, um sorteado por carrossel
     ativo: true
 
 # Valores padrão para todos os produtos (cada produto pode sobrescrever)
@@ -41,9 +41,10 @@ fonte_conteudo: "banco"
 
 # De onde vêm as imagens de fundo:
 #   "pasta"  -> fotos que você colocar em fundos/
+#   "pixabay" -> busca automática no Pixabay (grátis, precisa PIXABAY_API_KEY)
 #   "pexels" -> busca automática no Pexels (grátis, precisa PEXELS_API_KEY)
 #   "cor"    -> degradê gerado (sempre funciona, usado como reserva)
-fonte_fundo: "pexels"
+fonte_fundo: "pixabay"
 
 # Horários de postagem (horário de Brasília). Usado no agendamento.
 horarios: ["08:00", "12:30", "19:00"]

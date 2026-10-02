@@ -166,6 +166,24 @@ def fundos_pexels(cfg, prod, qtd):
     return [Image.open(BytesIO(requests.get(f["src"]["large2x"], timeout=60).content)) for f in fotos]
 
 
+def fundos_pixabay(cfg, prod, qtd):
+    chave = os.environ.get("PIXABAY_API_KEY")
+    if not chave:
+        return []
+    busca = prod.get("busca_fundo") or prod["nicho"]
+    if isinstance(busca, list):
+        busca = random.choice(busca)
+    r = requests.get("https://pixabay.com/api/", params={
+        "key": chave, "q": busca, "image_type": "photo", "orientation": "vertical",
+        "safesearch": "true", "per_page": 50}, timeout=30)
+    r.raise_for_status()
+    fotos = r.json()["hits"]
+    if not fotos:
+        return []
+    fotos = random.sample(fotos, min(qtd, len(fotos)))
+    return [Image.open(BytesIO(requests.get(f["largeImageURL"], timeout=60).content)) for f in fotos]
+
+
 def escolher_fundos(cfg, prod, qtd):
     w, h = cfg["slides"]["largura"], cfg["slides"]["altura"]
     imgs = []
@@ -174,11 +192,12 @@ def escolher_fundos(cfg, prod, qtd):
                     if p.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp")]
         random.shuffle(arquivos)
         imgs = [Image.open(p) for p in arquivos[:qtd]]
-    elif cfg["fonte_fundo"] == "pexels":
+    elif cfg["fonte_fundo"] in ("pixabay", "pexels"):
+        busca = fundos_pixabay if cfg["fonte_fundo"] == "pixabay" else fundos_pexels
         try:
-            imgs = fundos_pexels(cfg, prod, qtd)
+            imgs = busca(cfg, prod, qtd)
         except Exception as e:  # sem internet ou chave inválida: usa degradê
-            print("Pexels falhou, usando degradê:", e)
+            print(cfg["fonte_fundo"], "falhou, usando degradê:", e)
     imgs = [cortar_para(i, w, h) for i in imgs]
     while len(imgs) < qtd:
         imgs.append(imgs[len(imgs) % len(imgs)] if imgs and len(imgs) >= 3 else fundo_degrade(w, h))
