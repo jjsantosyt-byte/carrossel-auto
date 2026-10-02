@@ -5,15 +5,15 @@
 
 # Interruptor geral: deixe false até cadastrar produtos e segredos.
 # Com false, o robô do GitHub não gera nem publica nada.
-ligado: false
+ligado: true
 
 # Produtos de afiliado (Hotmart, Kiwify, Eduzz) ou ebooks próprios.
 # Cada carrossel divulga o próximo da lista, em revezamento.
 # Copie um bloco para adicionar outro produto; "ativo: false" pausa um produto.
 produtos:
-  - nome: "Curso TikTok Shop"              # TROCAR: nome do curso na Kiwify
+  - nome: "Renda com TikTok Shop"
     nicho: "ganhar dinheiro como afiliado do TikTok Shop"
-    preco: ""                              # ex.: "R$ 97" (ou "" para não mostrar)
+    preco: ""
     link: "https://pay.kiwify.com.br/5HL9YNC?afid=sNgcxNct"
     busca_fundo: "smartphone shopping"     # tema das fotos de fundo (Pexels)
     ativo: true
