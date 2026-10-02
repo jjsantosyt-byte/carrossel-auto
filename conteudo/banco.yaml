@@ -1,35 +1,107 @@
 # Banco de roteiros. Cada item vira um carrossel.
 # hook = slide 1 (frase que para o scroll)
 # slides = slides do meio (titulo + texto curto)
-# legenda = texto da publicação (o link do ebook é adicionado sozinho)
+# legenda = texto da publicação (o nome do produto e "link na bio" entram sozinhos)
 # produto = (opcional) nome exato do produto em config.yaml; sem ele, o roteiro serve para qualquer produto
-# EXEMPLOS de renda extra: troque pelo tema dos seus produtos.
+# Tema: ganhar dinheiro como afiliado do TikTok Shop.
+# Evite prometer valores de ganho: Instagram, TikTok e Kiwify punem promessa de dinheiro fácil.
 
-- produto: "Renda Extra em 30 Dias"
-  hook: "5 jeitos de fazer R$ 500 extras sem sair de casa"
+- hook: "O que ninguém te conta antes de começar no TikTok Shop"
   slides:
-    - {titulo: "Venda o que você já sabe", texto: "Aulas online de algo que você domina: idioma, música, reforço escolar."}
-    - {titulo: "Revenda digital", texto: "Produtos digitais não têm estoque nem frete. Você vende o mesmo arquivo mil vezes."}
-    - {titulo: "Serviços rápidos", texto: "Edição de vídeo, legendas, design no Canva. Empresas pagam por agilidade."}
-    - {titulo: "Afiliado", texto: "Indique produtos de outras pessoas e ganhe comissão por venda."}
-    - {titulo: "Desapego inteligente", texto: "O que está parado em casa pode virar o primeiro capital."}
-  legenda: "Salva esse post pra não esquecer 📌 Qual desses você vai testar primeiro?"
-  hashtags: "#rendaextra #dinheiroextra #trabalhoemcasa #empreendedorismo"
+    - {titulo: "Você não precisa de estoque", texto: "Como afiliado, você divulga produtos de outras lojas e ganha comissão por cada venda."}
+    - {titulo: "Nem de muitos seguidores", texto: "Vídeo bom aparece pra quem não te segue. O algoritmo entrega pelo conteúdo, não pelo tamanho."}
+    - {titulo: "Mas precisa de constância", texto: "Quem posta todo dia aprende mais rápido o que vende e o que não vende."}
+    - {titulo: "Produto certo é metade", texto: "Escolher bem o que divulgar pesa mais que edição bonita."}
+    - {titulo: "E de um método", texto: "Seguir um passo a passo testado economiza meses de tentativa e erro."}
+  legenda: "Salva pra ler de novo antes de começar 📌"
+  hashtags: "#tiktokshop #afiliado #rendaextra #vendasonline #tiktokshopbrasil"
 
-- hook: "Pare de cometer esses 4 erros com o seu dinheiro"
+- hook: "5 erros que travam suas vendas no TikTok Shop"
   slides:
-    - {titulo: "Erro 1: não anotar gastos", texto: "Quem não mede, não controla. Anote tudo por 30 dias e se assuste."}
-    - {titulo: "Erro 2: parcelar tudo", texto: "Parcela pequena vira dívida grande quando você soma todas."}
-    - {titulo: "Erro 3: sem reserva", texto: "Qualquer imprevisto vira cartão de crédito com juros altíssimos."}
-    - {titulo: "Erro 4: depender de uma renda", texto: "Uma segunda fonte de renda muda o jogo."}
-  legenda: "Qual desses erros você comete? Comenta aqui 👇"
-  hashtags: "#financaspessoais #educacaofinanceira #dinheiro #rendaextra"
+    - {titulo: "Erro 1: produto aleatório", texto: "Divulgar qualquer coisa só porque a comissão é alta. Produto sem demanda não vende."}
+    - {titulo: "Erro 2: vídeo sem gancho", texto: "Se os 2 primeiros segundos não prendem, ninguém vê o produto."}
+    - {titulo: "Erro 3: não mostrar uso", texto: "As pessoas compram quando veem o produto resolvendo um problema real."}
+    - {titulo: "Erro 4: desistir cedo", texto: "Postar 5 vídeos e parar. O jogo começa depois de dezenas de testes."}
+    - {titulo: "Erro 5: ignorar os números", texto: "Retenção e cliques mostram o que repetir. Quem não olha, chuta."}
+  legenda: "Qual desses você já cometeu? Comenta aqui 👇"
+  hashtags: "#tiktokshop #afiliadotiktok #vendernotiktok #dinheironainternet"
 
-- hook: "Ninguém te conta isso sobre ganhar dinheiro na internet"
+- hook: "Como escolher produtos que realmente vendem no TikTok Shop"
   slides:
-    - {titulo: "Não é rápido", texto: "Os primeiros 30 dias são de aprender. Depois começa a render."}
-    - {titulo: "Constância vence talento", texto: "Postar todo dia por 3 meses vale mais que um viral."}
-    - {titulo: "Comece pequeno", texto: "Sua primeira venda vale mais que um plano perfeito na gaveta."}
-    - {titulo: "Tenha um método", texto: "Seguir um passo a passo testado economiza meses de erro."}
-  legenda: "Manda pra aquele amigo que quer começar 🚀"
-  hashtags: "#rendaextra #marketingdigital #empreender #dinheironainternet"
+    - {titulo: "Resolve um problema visível", texto: "Produtos que mostram antes e depois em segundos funcionam muito bem em vídeo."}
+    - {titulo: "Preço de compra por impulso", texto: "Ticket baixo e médio: a pessoa decide na hora, sem pensar duas vezes."}
+    - {titulo: "Já tem vídeos vendendo", texto: "Se outros criadores já vendem, existe demanda. Você só precisa do seu ângulo."}
+    - {titulo: "Boa avaliação da loja", texto: "Loja com nota baixa gera reclamação e devolução. Isso queima sua conta."}
+    - {titulo: "Comissão que vale a pena", texto: "Compare a comissão com o preço. Muitas vendas pequenas também somam."}
+  legenda: "Manda pra quem quer começar como afiliado 🚀"
+  hashtags: "#tiktokshop #produtosvirais #afiliado #achadinhos"
+
+- hook: "O roteiro de vídeo que mais vende no TikTok Shop"
+  slides:
+    - {titulo: "Segundo 0 a 2: o gancho", texto: "Comece pelo problema ou pelo resultado. Nunca comece se apresentando."}
+    - {titulo: "Segundo 3 a 10: a prova", texto: "Mostre o produto funcionando de verdade, de perto, sem enrolação."}
+    - {titulo: "Segundo 10 a 20: o detalhe", texto: "Um benefício que a pessoa não esperava. É aqui que ela decide comprar."}
+    - {titulo: "Final: a chamada", texto: "Diga exatamente o que fazer: toque no carrinho laranja e garanta o seu."}
+    - {titulo: "Repita o que funciona", texto: "Achou um formato que vende? Grave de novo com outro produto."}
+  legenda: "Salva esse roteiro e testa no seu próximo vídeo 🎬"
+  hashtags: "#tiktokshop #roteirodevideo #ugc #afiliadotiktok"
+
+- hook: "Dá pra vender no TikTok Shop sem mostrar o rosto?"
+  slides:
+    - {titulo: "Sim, e muita gente faz", texto: "Vídeos só com as mãos e o produto vendem tanto quanto vídeos com rosto."}
+    - {titulo: "Foco no produto", texto: "Close no uso, textura, tamanho real. A pessoa quer ver o produto, não você."}
+    - {titulo: "Use texto na tela", texto: "Legendas grandes contam a história mesmo com o som desligado."}
+    - {titulo: "Narração ajuda", texto: "Sua voz explicando o benefício passa confiança sem precisar aparecer."}
+    - {titulo: "Luz faz diferença", texto: "Janela ou um anel de luz simples deixam o vídeo com cara profissional."}
+  legenda: "Você mostraria o rosto ou não? Comenta 👇"
+  hashtags: "#tiktokshop #semmostrarorosto #rendaextra #afiliado"
+
+- hook: "Seu primeiro mês no TikTok Shop: o plano simples"
+  slides:
+    - {titulo: "Semana 1: estude", texto: "Veja os vídeos que mais vendem no seu nicho e anote o que se repete."}
+    - {titulo: "Semana 2: escolha produtos", texto: "Separe de 3 a 5 produtos com demanda e boa avaliação."}
+    - {titulo: "Semana 3: poste todo dia", texto: "Um a três vídeos por dia, testando ganchos diferentes."}
+    - {titulo: "Semana 4: analise", texto: "Veja quais vídeos tiveram mais cliques e faça variações deles."}
+    - {titulo: "Depois: escale", texto: "Mais vídeos do que funciona, menos do que não funciona."}
+  legenda: "Salva e começa hoje 📌"
+  hashtags: "#tiktokshop #comecarnotiktok #afiliado #plano30dias"
+
+- hook: "Afiliado ou loja própria no TikTok Shop? Veja a diferença"
+  slides:
+    - {titulo: "Afiliado: começa hoje", texto: "Sem estoque e sem envio. Seu trabalho é criar vídeos que mostram o produto."}
+    - {titulo: "Afiliado: ganha comissão", texto: "Você recebe uma porcentagem de cada venda feita pelo seu vídeo."}
+    - {titulo: "Loja: margem maior", texto: "Você fica com o lucro inteiro, mas cuida de estoque e entregas."}
+    - {titulo: "Loja: mais responsabilidade", texto: "Atendimento, devolução e nota fiscal passam a ser com você."}
+    - {titulo: "O caminho mais comum", texto: "Começar como afiliado, aprender o que vende e só depois pensar em loja."}
+  legenda: "Você começaria por qual? Comenta 👇"
+  hashtags: "#tiktokshop #afiliado #lojavirtual #empreendedorismodigital"
+
+- hook: "Por que seus vídeos do TikTok Shop não têm visualização"
+  slides:
+    - {titulo: "Gancho fraco", texto: "Se a pessoa não para nos 2 primeiros segundos, o vídeo morre ali."}
+    - {titulo: "Vídeo longo demais", texto: "Corte tudo que não mostra o produto ou o benefício."}
+    - {titulo: "Qualidade ruim", texto: "Imagem escura ou tremida passa desconfiança e derruba a retenção."}
+    - {titulo: "Postando pouco", texto: "Um vídeo por semana não dá dados suficientes para aprender."}
+    - {titulo: "Copiando sem adaptar", texto: "Inspirar-se é ótimo, mas coloque seu jeito e seu ângulo."}
+  legenda: "Qual desses é o seu caso? 👀"
+  hashtags: "#tiktokshop #engajamento #algoritmotiktok #afiliado"
+
+- hook: "3 tipos de vídeo que vendem sem parecer propaganda"
+  slides:
+    - {titulo: "Antes e depois", texto: "Mostre o problema e o resultado. É o formato mais simples e mais forte."}
+    - {titulo: "Achadinho do dia", texto: "Tom de descoberta: olha o que eu encontrei e como funciona."}
+    - {titulo: "Teste sincero", texto: "Testar na frente da câmera e falar a verdade gera confiança."}
+    - {titulo: "Evite tom de vendedor", texto: "Fale como quem indica pra um amigo, não como comercial de TV."}
+    - {titulo: "Teste os três", texto: "Grave o mesmo produto nos três formatos e veja qual vende mais."}
+  legenda: "Salva e testa no próximo vídeo 🎥"
+  hashtags: "#tiktokshop #achadinhos #ugc #afiliadotiktok"
+
+- hook: "O que fazer quando um vídeo do TikTok Shop viraliza"
+  slides:
+    - {titulo: "Não pare de postar", texto: "O algoritmo está de olho em você. Aproveite e poste mais nos dias seguintes."}
+    - {titulo: "Faça a parte 2", texto: "Responda comentários com novos vídeos do mesmo produto."}
+    - {titulo: "Repita o formato", texto: "Mesmo gancho, mesma estrutura, outro produto parecido."}
+    - {titulo: "Confira o estoque", texto: "Produto esgotado na loja é venda perdida. Tenha opções parecidas."}
+    - {titulo: "Anote o que funcionou", texto: "Gancho, duração, horário e produto. Isso vira sua fórmula."}
+  legenda: "Manda pra aquele amigo que está começando 🔥"
+  hashtags: "#tiktokshop #viral #afiliado #vendasnotiktok"

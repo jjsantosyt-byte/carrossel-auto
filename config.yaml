@@ -11,25 +11,21 @@ ligado: false
 # Cada carrossel divulga o próximo da lista, em revezamento.
 # Copie um bloco para adicionar outro produto; "ativo: false" pausa um produto.
 produtos:
-  - nome: "Renda Extra em 30 Dias"         # TROCAR: nome do produto
-    nicho: "renda extra e finanças pessoais" # TROCAR: tema (usado pela IA e na busca de fotos)
-    preco: "R$ 27"                         # ou "" para não mostrar
-    link: "https://go.hotmart.com/SEU-LINK" # TROCAR: seu link de afiliado
+  - nome: "Curso TikTok Shop"              # TROCAR: nome do curso na Kiwify
+    nicho: "ganhar dinheiro como afiliado do TikTok Shop"
+    preco: ""                              # ex.: "R$ 97" (ou "" para não mostrar)
+    link: "https://kiwify.app/SEU-LINK"    # TROCAR: seu link de afiliado da Kiwify
+    busca_fundo: "smartphone shopping"     # tema das fotos de fundo (Pexels)
     ativo: true
-  # - nome: "Outro Ebook"
-  #   nicho: "emagrecimento"
-  #   preco: "R$ 37"
-  #   link: "https://pay.kiwify.com.br/SEU-LINK"
-  #   chamada_topo: "Quer o cardápio completo?"
 
 # Valores padrão para todos os produtos (cada produto pode sobrescrever)
 ebook:
-  chamada_topo: "Quer o passo a passo completo?"  # frase acima do nome no último slide
+  chamada_topo: "Quer aprender do zero?"  # frase acima do nome no último slide
   chamada_link: "Link na bio"              # texto do botão do último slide
 
 marca:
   arroba: "@mixedsupercuts"
-  cor_destaque: "#FFD400"                  # amarelo chamativo
+  cor_destaque: "#FE2C55"                  # rosa do TikTok
   cor_texto: "#FFFFFF"
   escurecer_fundo: 0.55                    # 0 = foto pura, 1 = preto
 
