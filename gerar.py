@@ -346,10 +346,18 @@ def gerar_carrossel(cfg, pasta_saida=None):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--qtd", type=int, default=1)
+    ap.add_argument("--completar", action="store_true",
+                    help="só gera o que falta para a fila ter --qtd carrosséis não publicados")
     args = ap.parse_args()
     cfg = carregar_config()
     if not cfg.get("ligado", True) and os.environ.get("GITHUB_ACTIONS"):
         print("Desligado em config.yaml (ligado: false). Nada foi gerado."); sys.exit(0)
     gerar_pagina_links(cfg)
-    for _ in range(args.qtd):
+    qtd = args.qtd
+    if args.completar:
+        pendentes = [p for p in (BASE / "saida").glob("*/post.json")
+                     if not json.loads(p.read_text(encoding="utf-8"))["publicado"]]
+        qtd = max(0, args.qtd - len(pendentes))
+        print(f"{len(pendentes)} na fila; gerando {qtd}.")
+    for _ in range(qtd):
         gerar_carrossel(cfg)
