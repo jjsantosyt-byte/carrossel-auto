@@ -3,7 +3,7 @@ Atualizado em 02/10/2026
 
 == O QUE O ROBÔ JÁ FAZ SOZINHO ==
 - 3 carrosséis por dia (08:00, 12:30, 19:00), gerados às 06:00.
-- 40 roteiros diferentes sobre TikTok Shop (repete só depois de ~2 semanas).
+- 39 roteiros diferentes sobre TikTok Shop (repete só depois de ~2 semanas).
 - Alterna: 2 posts de dica (chamada leve: "salva e segue") e 1 post de venda (chamada forte pro curso).
 - Fotos de fundo automáticas do Pixabay.
 
