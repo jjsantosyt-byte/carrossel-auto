@@ -15,7 +15,7 @@ produtos:
     nicho: "ganhar dinheiro como afiliado do TikTok Shop"
     preco: ""
     link: "https://pay.kiwify.com.br/5HL9YNC?afid=sNgcxNct"
-    busca_fundo: "smartphone shopping"     # tema das fotos de fundo (Pexels)
+    busca_fundo: ["smartphone", "online shopping", "shopping bags", "package delivery", "phone filming", "ecommerce"]  # temas das fotos (Pexels), um sorteado por carrossel
     ativo: true
 
 # Valores padrão para todos os produtos (cada produto pode sobrescrever)
@@ -24,7 +24,7 @@ ebook:
   chamada_link: "Link na bio"              # texto do botão do último slide
 
 marca:
-  arroba: "@mixedsupercuts"
+  arroba: "@vendanoshop"
   cor_destaque: "#FE2C55"                  # rosa do TikTok
   cor_texto: "#FFFFFF"
   escurecer_fundo: 0.55                    # 0 = foto pura, 1 = preto
@@ -43,7 +43,7 @@ fonte_conteudo: "banco"
 #   "pasta"  -> fotos que você colocar em fundos/
 #   "pexels" -> busca automática no Pexels (grátis, precisa PEXELS_API_KEY)
 #   "cor"    -> degradê gerado (sempre funciona, usado como reserva)
-fonte_fundo: "pasta"
+fonte_fundo: "pexels"
 
 # Horários de postagem (horário de Brasília). Usado no agendamento.
 horarios: ["08:00", "12:30", "19:00"]

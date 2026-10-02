@@ -151,12 +151,18 @@ def fundos_pexels(cfg, prod, qtd):
     chave = os.environ.get("PEXELS_API_KEY")
     if not chave:
         return []
+    busca = prod.get("busca_fundo") or prod["nicho"]
+    if isinstance(busca, list):
+        busca = random.choice(busca)
     r = requests.get("https://api.pexels.com/v1/search",
-                     params={"query": prod.get("busca_fundo", prod["nicho"]),
+                     params={"query": busca,
                              "orientation": "portrait", "per_page": 40},
                      headers={"Authorization": chave}, timeout=30)
     r.raise_for_status()
-    fotos = random.sample(r.json()["photos"], min(qtd, len(r.json()["photos"])))
+    fotos = r.json()["photos"]
+    if not fotos:
+        return []
+    fotos = random.sample(fotos, min(qtd, len(fotos)))
     return [Image.open(BytesIO(requests.get(f["src"]["large2x"], timeout=60).content)) for f in fotos]
 
 
