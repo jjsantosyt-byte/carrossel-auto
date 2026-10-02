@@ -14,7 +14,7 @@ produtos:
   - nome: "Curso TikTok Shop"              # TROCAR: nome do curso na Kiwify
     nicho: "ganhar dinheiro como afiliado do TikTok Shop"
     preco: ""                              # ex.: "R$ 97" (ou "" para não mostrar)
-    link: "https://kiwify.app/SEU-LINK"    # TROCAR: seu link de afiliado da Kiwify
+    link: "https://pay.kiwify.com.br/5HL9YNC?afid=sNgcxNct"
     busca_fundo: "smartphone shopping"     # tema das fotos de fundo (Pexels)
     ativo: true
 
