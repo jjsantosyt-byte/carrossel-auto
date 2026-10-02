@@ -1,0 +1,35 @@
+# Banco de roteiros. Cada item vira um carrossel.
+# hook = slide 1 (frase que para o scroll)
+# slides = slides do meio (titulo + texto curto)
+# legenda = texto da publicação (o link do ebook é adicionado sozinho)
+# produto = (opcional) nome exato do produto em config.yaml; sem ele, o roteiro serve para qualquer produto
+# EXEMPLOS de renda extra: troque pelo tema dos seus produtos.
+
+- produto: "Renda Extra em 30 Dias"
+  hook: "5 jeitos de fazer R$ 500 extras sem sair de casa"
+  slides:
+    - {titulo: "Venda o que você já sabe", texto: "Aulas online de algo que você domina: idioma, música, reforço escolar."}
+    - {titulo: "Revenda digital", texto: "Produtos digitais não têm estoque nem frete. Você vende o mesmo arquivo mil vezes."}
+    - {titulo: "Serviços rápidos", texto: "Edição de vídeo, legendas, design no Canva. Empresas pagam por agilidade."}
+    - {titulo: "Afiliado", texto: "Indique produtos de outras pessoas e ganhe comissão por venda."}
+    - {titulo: "Desapego inteligente", texto: "O que está parado em casa pode virar o primeiro capital."}
+  legenda: "Salva esse post pra não esquecer 📌 Qual desses você vai testar primeiro?"
+  hashtags: "#rendaextra #dinheiroextra #trabalhoemcasa #empreendedorismo"
+
+- hook: "Pare de cometer esses 4 erros com o seu dinheiro"
+  slides:
+    - {titulo: "Erro 1: não anotar gastos", texto: "Quem não mede, não controla. Anote tudo por 30 dias e se assuste."}
+    - {titulo: "Erro 2: parcelar tudo", texto: "Parcela pequena vira dívida grande quando você soma todas."}
+    - {titulo: "Erro 3: sem reserva", texto: "Qualquer imprevisto vira cartão de crédito com juros altíssimos."}
+    - {titulo: "Erro 4: depender de uma renda", texto: "Uma segunda fonte de renda muda o jogo."}
+  legenda: "Qual desses erros você comete? Comenta aqui 👇"
+  hashtags: "#financaspessoais #educacaofinanceira #dinheiro #rendaextra"
+
+- hook: "Ninguém te conta isso sobre ganhar dinheiro na internet"
+  slides:
+    - {titulo: "Não é rápido", texto: "Os primeiros 30 dias são de aprender. Depois começa a render."}
+    - {titulo: "Constância vence talento", texto: "Postar todo dia por 3 meses vale mais que um viral."}
+    - {titulo: "Comece pequeno", texto: "Sua primeira venda vale mais que um plano perfeito na gaveta."}
+    - {titulo: "Tenha um método", texto: "Seguir um passo a passo testado economiza meses de erro."}
+  legenda: "Manda pra aquele amigo que quer começar 🚀"
+  hashtags: "#rendaextra #marketingdigital #empreender #dinheironainternet"

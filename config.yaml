@@ -1,0 +1,57 @@
+# ============================================================
+#  CONFIGURAÇÃO DO CARROSSEL AUTOMÁTICO
+#  Troque os valores marcados com TROCAR antes de usar.
+# ============================================================
+
+# Interruptor geral: deixe false até cadastrar produtos e segredos.
+# Com false, o robô do GitHub não gera nem publica nada.
+ligado: false
+
+# Produtos de afiliado (Hotmart, Kiwify, Eduzz) ou ebooks próprios.
+# Cada carrossel divulga o próximo da lista, em revezamento.
+# Copie um bloco para adicionar outro produto; "ativo: false" pausa um produto.
+produtos:
+  - nome: "Renda Extra em 30 Dias"         # TROCAR: nome do produto
+    nicho: "renda extra e finanças pessoais" # TROCAR: tema (usado pela IA e na busca de fotos)
+    preco: "R$ 27"                         # ou "" para não mostrar
+    link: "https://go.hotmart.com/SEU-LINK" # TROCAR: seu link de afiliado
+    ativo: true
+  # - nome: "Outro Ebook"
+  #   nicho: "emagrecimento"
+  #   preco: "R$ 37"
+  #   link: "https://pay.kiwify.com.br/SEU-LINK"
+  #   chamada_topo: "Quer o cardápio completo?"
+
+# Valores padrão para todos os produtos (cada produto pode sobrescrever)
+ebook:
+  chamada_topo: "Quer o passo a passo completo?"  # frase acima do nome no último slide
+  chamada_link: "Link na bio"              # texto do botão do último slide
+
+marca:
+  arroba: "@mixedsupercuts"
+  cor_destaque: "#FFD400"                  # amarelo chamativo
+  cor_texto: "#FFFFFF"
+  escurecer_fundo: 0.55                    # 0 = foto pura, 1 = preto
+
+slides:
+  largura: 1080
+  altura: 1350                             # 4:5, funciona no Instagram e TikTok
+  quantidade_conteudo: 5                   # slides entre o hook e o CTA
+
+# De onde vem o texto dos carrosséis:
+#   "ia"    -> gera texto novo com a API do Claude (precisa ANTHROPIC_API_KEY)
+#   "banco" -> sorteia de conteudo/banco.yaml (sem custo, você escreve os textos)
+fonte_conteudo: "banco"
+
+# De onde vêm as imagens de fundo:
+#   "pasta"  -> fotos que você colocar em fundos/
+#   "pexels" -> busca automática no Pexels (grátis, precisa PEXELS_API_KEY)
+#   "cor"    -> degradê gerado (sempre funciona, usado como reserva)
+fonte_fundo: "pasta"
+
+# Horários de postagem (horário de Brasília). Usado no agendamento.
+horarios: ["08:00", "12:30", "19:00"]
+
+publicar_em:
+  instagram: true
+  tiktok: true
