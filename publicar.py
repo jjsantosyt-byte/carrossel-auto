@@ -142,6 +142,16 @@ def proximo_da_fila():
     return None, alvos
 
 
+def esperar_imagens_no_ar(urls, limite=300):
+    """O GitHub Pages leva 1 ou 2 minutos para publicar imagens novas. Espera elas aparecerem."""
+    inicio = time.time()
+    while time.time() - inicio < limite:
+        if all(requests.head(u, timeout=20).status_code == 200 for u in urls):
+            return
+        time.sleep(15)
+    raise RuntimeError("As imagens não apareceram no GitHub Pages: " + urls[0])
+
+
 def publicar(pasta, alvos, teste=False):
     arq = pasta / "post.json"
     post = json.loads(arq.read_text(encoding="utf-8"))
@@ -150,6 +160,7 @@ def publicar(pasta, alvos, teste=False):
         print(json.dumps({"alvos": alvos, "urls": urls, "legenda": post["legenda"]},
                          ensure_ascii=False, indent=2))
         return True
+    esperar_imagens_no_ar(urls)
     ok = True
     for alvo in alvos:
         if alvo in post["publicado"]:

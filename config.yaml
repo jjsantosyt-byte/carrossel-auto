@@ -50,4 +50,4 @@ horarios: ["08:00", "12:30", "19:00"]
 
 publicar_em:
   instagram: true
-  tiktok: true
+  tiktok: false                            # ligar depois de configurar o app do TikTok
