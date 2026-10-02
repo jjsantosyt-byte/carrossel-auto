@@ -18,6 +18,13 @@ produtos:
     busca_fundo: ["smartphone hand", "shopping bags", "cardboard box", "online shopping laptop", "phone camera", "package delivery"]  # temas das fotos de fundo
     categoria_fundo: "business"            # categoria do Pixabay (evita fotos fora do tema)
     ativo: true
+  - nome: "Método ZN TikTok Shop"
+    nicho: "ganhar dinheiro como afiliado do TikTok Shop"
+    preco: ""
+    link: "https://kiwify.app/XS25Q8y?afid=nSSuu7iq"
+    busca_fundo: ["smartphone hand", "shopping bags", "cardboard box", "online shopping laptop", "phone camera", "package delivery"]
+    categoria_fundo: "business"
+    ativo: true
 
 # Valores padrão para todos os produtos (cada produto pode sobrescrever)
 ebook:

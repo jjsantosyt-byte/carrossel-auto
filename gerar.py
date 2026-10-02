@@ -354,7 +354,9 @@ def slide_cta(fundo, cfg, eb, total):
 # ---------------------------------------------------------------- principal
 
 def gerar_carrossel(cfg, pasta_saida=None):
-    prod = escolher_produto(cfg)
+    venda = post_de_venda(cfg)
+    # o revezamento de produtos só anda nos posts de venda
+    prod = escolher_produto(cfg) if venda else lista_produtos(cfg)[0]
     if cfg["fonte_conteudo"] == "ia":
         roteiro = roteiro_da_ia(cfg, prod)
     else:
@@ -369,7 +371,6 @@ def gerar_carrossel(cfg, pasta_saida=None):
     pasta.mkdir(parents=True, exist_ok=True)
     slides = [slide_hook(fundos[0], cfg, roteiro["hook"], total)]
     slides += [slide_conteudo(fundos[i + 1], cfg, it, i + 2, total) for i, it in enumerate(itens)]
-    venda = post_de_venda(cfg)
     slides.append(slide_cta(fundos[-1], cfg, prod, total) if venda else slide_seguir(fundos[-1], cfg, total))
     arquivos = []
     for i, s in enumerate(slides, 1):
