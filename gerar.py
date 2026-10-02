@@ -175,6 +175,7 @@ def fundos_pixabay(cfg, prod, qtd):
         busca = random.choice(busca)
     r = requests.get("https://pixabay.com/api/", params={
         "key": chave, "q": busca, "image_type": "photo", "orientation": "vertical",
+        "category": prod.get("categoria_fundo", "business"),
         "safesearch": "true", "per_page": 50}, timeout=30)
     r.raise_for_status()
     fotos = r.json()["hits"]
@@ -219,16 +220,29 @@ def escurecer(img, nivel):
     return Image.composite(preto, img, grad.point(lambda p: int(p * 0.5)))
 
 
+def quebrar(draw, texto, fonte, largura_max):
+    """Quebra o texto em linhas medindo a largura real de cada uma."""
+    linhas, atual = [], ""
+    for palavra in texto.split():
+        teste = f"{atual} {palavra}".strip()
+        if not atual or draw.textlength(teste.replace("*", ""), font=fonte) <= largura_max:
+            atual = teste
+        else:
+            linhas.append(atual)
+            atual = palavra
+    return linhas + [atual] if atual else linhas
+
+
 def caber_texto(draw, texto, fonte_path, largura_max, tam_max, tam_min, max_linhas):
     """Acha o maior tamanho de fonte em que o texto cabe."""
     for tam in range(tam_max, tam_min - 1, -4):
         fonte = ImageFont.truetype(fonte_path, tam)
-        chars = max(8, int(largura_max / (tam * 0.58)))
-        linhas = textwrap.wrap(texto, chars)
-        if len(linhas) <= max_linhas and all(draw.textlength(l, font=fonte) <= largura_max for l in linhas):
+        linhas = quebrar(draw, texto, fonte, largura_max)
+        if len(linhas) <= max_linhas and all(
+                draw.textlength(l.replace("*", ""), font=fonte) <= largura_max for l in linhas):
             return fonte, linhas
     fonte = ImageFont.truetype(fonte_path, tam_min)
-    return fonte, textwrap.wrap(texto, max(8, int(largura_max / (tam_min * 0.58))))
+    return fonte, quebrar(draw, texto, fonte, largura_max)
 
 
 def escrever(draw, linhas, fonte, x, y, cor, destaque=None, espaco=1.18, centro=False, largura=0):

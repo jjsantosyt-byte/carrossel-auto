@@ -15,7 +15,8 @@ produtos:
     nicho: "ganhar dinheiro como afiliado do TikTok Shop"
     preco: ""
     link: "https://pay.kiwify.com.br/5HL9YNC?afid=sNgcxNct"
-    busca_fundo: ["smartphone", "online shopping", "shopping bags", "package delivery", "phone filming", "ecommerce"]  # temas das fotos de fundo, um sorteado por carrossel
+    busca_fundo: ["smartphone hand", "shopping bags", "cardboard box", "online shopping laptop", "phone camera", "package delivery"]  # temas das fotos de fundo
+    categoria_fundo: "business"            # categoria do Pixabay (evita fotos fora do tema)
     ativo: true
 
 # Valores padrão para todos os produtos (cada produto pode sobrescrever)
