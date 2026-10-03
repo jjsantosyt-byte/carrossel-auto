@@ -1,0 +1,4 @@
+Coloque aqui de 5 a 10 músicas LIVRES DE DIREITOS AUTORAIS (.mp3), por exemplo do
+Pixabay Music (pixabay.com/music) ou da Biblioteca de Áudio do YouTube.
+O robô sorteia uma para cada Reels. Sem músicas aqui, o Reels sai sem som.
+Não use músicas famosas: o Instagram pode bloquear o vídeo por direitos autorais.

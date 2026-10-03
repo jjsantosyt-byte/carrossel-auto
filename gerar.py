@@ -8,6 +8,7 @@ import argparse
 import json
 import os
 import random
+import subprocess
 import sys
 import textwrap
 from datetime import datetime
@@ -260,7 +261,11 @@ def escrever(draw, linhas, fonte, x, y, cor, destaque=None, espaco=1.18, centro=
     return y + len(linhas) * alt
 
 
+MOSTRAR_SETA = True  # "arraste →" só faz sentido no carrossel, não no Reels
+
+
 def rodape(draw, cfg, w, h, num, total, seta=True):
+    seta = seta and MOSTRAR_SETA
     f = ImageFont.truetype(FONTE_REG, 30)
     draw.text((70, h - 90), cfg["marca"]["arroba"], font=f, fill=(230, 230, 230))
     txt = f"{num}/{total}" + ("   arraste →" if seta else "")
@@ -298,13 +303,39 @@ def slide_conteudo(fundo, cfg, item, num, total):
     return img
 
 
-def post_de_venda(cfg):
-    """Alterna: 1 a cada `venda_a_cada` posts chama pro produto; os outros só pedem salvar e seguir."""
-    a_cada = cfg.get("venda_a_cada", 1)
+def proximo_numero_post():
+    """Contador de carrosséis gerados, usado para alternar venda/dica e carrossel/Reels."""
     arq = BASE / "conteudo/contador_posts.json"
     n = json.loads(arq.read_text()) if arq.exists() else 0
     arq.write_text(json.dumps(n + 1))
-    return n % a_cada == a_cada - 1
+    return n
+
+
+def montar_reels(pasta, slides, cfg):
+    """Junta os slides num vídeo 9:16 com música de fundo (sorteada da pasta musicas/)."""
+    seg = cfg.get("reels_segundos_por_slide", 3)
+    lista = pasta / "_lista.txt"
+    linhas = []
+    for s in slides:
+        linhas += [f"file '{s}'", f"duration {seg}"]
+    linhas.append(f"file '{slides[-1]}'")  # o concat exige repetir o último
+    lista.write_text("\n".join(linhas))
+    duracao = seg * len(slides)
+    musicas = [m for m in (BASE / "musicas").glob("*") if m.suffix.lower() in (".mp3", ".m4a", ".wav", ".ogg")] \
+        if (BASE / "musicas").exists() else []
+    audio = ["-stream_loop", "-1", "-i", str(random.choice(musicas))] if musicas else \
+        ["-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=48000"]
+    video = pasta / "video.mp4"
+    cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(lista), *audio,
+           "-filter_complex",
+           "[0:v]scale=1080:1350,pad=1080:1920:0:285:color=0x111111,fps=30,format=yuv420p[v];"
+           f"[1:a]volume=0.8,afade=t=out:st={duracao - 2}:d=2[a]",
+           "-map", "[v]", "-map", "[a]", "-t", str(duracao),
+           "-c:v", "libx264", "-preset", "veryfast", "-crf", "23", "-profile:v", "high",
+           "-c:a", "aac", "-b:a", "128k", "-ar", "48000", "-movflags", "+faststart", str(video)]
+    subprocess.run(cmd, check=True)
+    lista.unlink()
+    return video.name
 
 
 def slide_seguir(fundo, cfg, total):
@@ -354,7 +385,11 @@ def slide_cta(fundo, cfg, eb, total):
 # ---------------------------------------------------------------- principal
 
 def gerar_carrossel(cfg, pasta_saida=None):
-    venda = post_de_venda(cfg)
+    n = proximo_numero_post()
+    venda = n % cfg.get("venda_a_cada", 1) == cfg.get("venda_a_cada", 1) - 1
+    reels = bool(cfg.get("reels_a_cada")) and n % cfg["reels_a_cada"] == 0
+    global MOSTRAR_SETA
+    MOSTRAR_SETA = not reels
     # o revezamento de produtos só anda nos posts de venda
     prod = escolher_produto(cfg) if venda else lista_produtos(cfg)[0]
     if cfg["fonte_conteudo"] == "ia":
@@ -380,10 +415,11 @@ def gerar_carrossel(cfg, pasta_saida=None):
 
     chamada = (f"📘 {prod['nome']}: {prod['chamada_link'].lower()}" if venda
                else f"Segue {cfg['marca']['arroba']} pra receber dicas todo dia 📲")
+    video = montar_reels(pasta, [pasta / a for a in arquivos], cfg) if reels else None
     legenda = (f"{roteiro['hook']}\n\n{roteiro.get('legenda', '')}\n\n"
                f"{chamada}\n\n{roteiro.get('hashtags', '')}").strip()
     (pasta / "post.json").write_text(json.dumps(
-        {"hook": roteiro["hook"], "venda": venda, "produto": prod["nome"], "link": prod["link"], "legenda": legenda, "slides": arquivos, "publicado": {}},
+        {"hook": roteiro["hook"], "venda": venda, "tipo": "reels" if reels else "carrossel", "video": video, "produto": prod["nome"], "link": prod["link"], "legenda": legenda, "slides": arquivos, "publicado": {}},
         ensure_ascii=False, indent=2), encoding="utf-8")
     print("Carrossel gerado em", pasta)
     return pasta

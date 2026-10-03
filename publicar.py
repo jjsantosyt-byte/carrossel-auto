@@ -45,8 +45,8 @@ def ig(metodo, caminho, **params):
     return r.json()
 
 
-def esperar_container_ig(cid):
-    for _ in range(30):
+def esperar_container_ig(cid, tentativas=30):
+    for _ in range(tentativas):
         st = ig("GET", cid, fields="status_code")["status_code"]
         if st == "FINISHED":
             return
@@ -54,6 +54,14 @@ def esperar_container_ig(cid):
             raise RuntimeError(f"Container {cid} falhou: {st}")
         time.sleep(5)
     raise RuntimeError(f"Container {cid} demorou demais")
+
+
+def publicar_reels_instagram(url_video, legenda):
+    uid = os.environ["IG_USER_ID"]
+    cid = ig("POST", f"{uid}/media", media_type="REELS", video_url=url_video,
+             caption=legenda[:2200], share_to_feed="true")["id"]
+    esperar_container_ig(cid, tentativas=60)  # vídeo demora mais para processar
+    return ig("POST", f"{uid}/media_publish", creation_id=cid)["id"]
 
 
 def publicar_instagram(urls, legenda):
@@ -160,6 +168,8 @@ def publicar(pasta, alvos, teste=False):
         print(json.dumps({"alvos": alvos, "urls": urls, "legenda": post["legenda"]},
                          ensure_ascii=False, indent=2))
         return True
+    if post.get("video"):
+        esperar_imagens_no_ar([urls[0].rsplit("/", 1)[0] + "/" + post["video"]])
     esperar_imagens_no_ar(urls)
     ok = True
     for alvo in alvos:
@@ -167,7 +177,15 @@ def publicar(pasta, alvos, teste=False):
             continue
         try:
             if alvo == "instagram":
-                post["publicado"]["instagram"] = publicar_instagram(urls, post["legenda"])
+                if post.get("tipo") == "reels" and post.get("video"):
+                    url_video = urls[0].rsplit("/", 1)[0] + "/" + post["video"]
+                    try:
+                        post["publicado"]["instagram"] = publicar_reels_instagram(url_video, post["legenda"])
+                    except Exception as e:  # se o Reels falhar, não perde o horário: posta como carrossel
+                        print(f"Reels falhou ({e}); publicando como carrossel.", file=sys.stderr)
+                        post["publicado"]["instagram"] = publicar_instagram(urls, post["legenda"])
+                else:
+                    post["publicado"]["instagram"] = publicar_instagram(urls, post["legenda"])
             elif alvo == "tiktok":
                 post["publicado"]["tiktok"] = publicar_tiktok(urls, post["hook"], post["legenda"])
             print(f"Publicado no {alvo}: {post['publicado'][alvo]}")

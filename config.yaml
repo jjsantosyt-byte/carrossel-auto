@@ -34,6 +34,10 @@ ebook:
 # 1 a cada N carrosséis termina chamando pro curso; os outros terminam com "salva e segue".
 venda_a_cada: 3
 
+# 1 a cada N posts vira Reels (slides em vídeo com música da pasta musicas/). 0 = nunca.
+reels_a_cada: 3
+reels_segundos_por_slide: 3
+
 marca:
   arroba: "@vendanoshop"
   cor_destaque: "#FE2C55"                  # rosa do TikTok
