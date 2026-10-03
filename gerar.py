@@ -323,8 +323,15 @@ def montar_reels(pasta, slides, cfg):
     duracao = seg * len(slides)
     musicas = [m for m in (BASE / "musicas").glob("*") if m.suffix.lower() in (".mp3", ".m4a", ".wav", ".ogg")] \
         if (BASE / "musicas").exists() else []
-    audio = ["-stream_loop", "-1", "-i", str(random.choice(musicas))] if musicas else \
-        ["-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=48000"]
+    if musicas:
+        musica = random.choice(musicas)
+        dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration",
+                                    "-of", "csv=p=0", str(musica)], capture_output=True, text=True).stdout or 0)
+        # pula a introdução (costuma ser parada) começando num ponto aleatório da música
+        inicio = random.uniform(5, max(5, min(45, dur - duracao - 1))) if dur > duracao + 6 else 0
+        audio = ["-stream_loop", "-1", "-ss", f"{inicio:.1f}", "-i", str(musica)]
+    else:
+        audio = ["-f", "lavfi", "-i", "anullsrc=channel_layout=stereo:sample_rate=48000"]
     video = pasta / "video.mp4"
     cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "concat", "-safe", "0", "-i", str(lista), *audio,
            "-filter_complex",
