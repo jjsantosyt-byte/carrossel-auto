@@ -35,6 +35,21 @@ jobs:
           PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
         run: python gerar.py --qtd 3 --completar
 
+      # O GitHub às vezes atrasa o horário das 06:00 em várias horas. Se a fila estiver
+      # vazia na hora de publicar, gera um agora e salva, para o GitHub Pages servir as imagens.
+      - name: Garantir que tem post na fila
+        if: github.event.schedule != '0 9 * * *' && inputs.acao != 'gerar'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
+          PIXABAY_API_KEY: ${{ secrets.PIXABAY_API_KEY }}
+        run: |
+          python gerar.py --qtd 1 --completar
+          git config user.name "carrossel-bot"
+          git config user.email "carrossel-bot@users.noreply.github.com"
+          git add saida conteudo links
+          if git commit -m "carrossel: fila vazia, gerado na hora"; then git push; fi
+
       - name: Publicar o próximo da fila
         if: github.event.schedule != '0 9 * * *' && inputs.acao != 'gerar'
         env:
