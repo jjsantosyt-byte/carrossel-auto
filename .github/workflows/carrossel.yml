@@ -26,6 +26,8 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - run: pip install -r requirements.txt
+      - name: Instalar o ffmpeg (monta os Reels)
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg
 
       - name: Gerar os carrosséis do dia
         if: github.event.schedule == '0 9 * * *' || inputs.acao == 'gerar'

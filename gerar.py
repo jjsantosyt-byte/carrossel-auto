@@ -422,7 +422,13 @@ def gerar_carrossel(cfg, pasta_saida=None):
 
     chamada = (f"📘 {prod['nome']}: {prod['chamada_link'].lower()}" if venda
                else f"Segue {cfg['marca']['arroba']} pra receber dicas todo dia 📲")
-    video = montar_reels(pasta, [pasta / a for a in arquivos], cfg) if reels else None
+    video = None
+    if reels:
+        try:
+            video = montar_reels(pasta, [pasta / a for a in arquivos], cfg)
+        except Exception as e:  # sem vídeo, o post sai como carrossel normal
+            print(f"AVISO: não deu para montar o Reels ({e}); vai como carrossel.", file=sys.stderr)
+            reels = False
     legenda = (f"{roteiro['hook']}\n\n{roteiro.get('legenda', '')}\n\n"
                f"{chamada}\n\n{roteiro.get('hashtags', '')}").strip()
     (pasta / "post.json").write_text(json.dumps(
